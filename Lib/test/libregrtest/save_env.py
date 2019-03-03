@@ -292,6 +292,26 @@ class saved_test_environment:
             original = saved_values.pop(name)
             # Check for changes to the resource's value
             if current != original:
+                for thing in current:
+                    print("*******************************************", file=sys.stderr, flush=True)
+                    print(thing, file=sys.stderr, flush=True)
+                    if os.path.isfile(thing):
+                        print("Is a file", file=sys.stderr, flush=True)
+                    elif os.path.isdir(thing):
+                        print("Is a directory", file=sys.stderr, flush=True)
+                    else:
+                        print("NO IDEA", file=sys.stderr, flush=True)
+
+                    try:
+                        with open(thing, 'r') as s:
+                            print(s.read(), file=sys.stderr, flush=True)
+                    except Exception:
+                            print("FAILED TO OPEN", file=sys.stderr, flush=True)
+                    try:
+                        print(os.listdir(thing), file=sys.stderr, flush=True)
+                    except Exception:
+                        print("FAILED TO LISTDIR", file=sys.stderr, flush=True)
+                    print("*******************************************", file=sys.stderr, flush=True)
                 self.changed = True
                 restore(original)
                 if not self.quiet and not self.pgo:
