@@ -24,7 +24,6 @@ def main(regrtest_args):
     args = [sys.executable,
             '-u',                 # Unbuffered stdout and stderr
             '-W', 'default',      # Warnings set to 'default'
-            '-bb',                # Warnings about bytes/bytearray
             '-E',                 # Ignore environment variables
             ]
     # Allow user-specified interpreter options to override our defaults.
