@@ -230,8 +230,11 @@ class saved_test_environment:
         fn = support.TESTFN
         if fn not in saved_value and (fn + '/') not in saved_value:
             if os.path.isfile(fn):
+                with open(fn, 'r') as s:
+                    print(s.read(), file=sys.stderr, flush=True)
                 support.unlink(fn)
             elif os.path.isdir(fn):
+                print(os.listdir(fn), file=sys.stderr, flush=True)
                 support.rmtree(fn)
 
     _lc = [getattr(locale, lc) for lc in dir(locale)
