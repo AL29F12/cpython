@@ -291,6 +291,7 @@ class saved_test_environment:
             current = get()
             original = saved_values.pop(name)
             # Check for changes to the resource's value
+            print("YEAH")
             if current != original:
                 for thing in current:
                     print("*******************************************", file=sys.stderr, flush=True)
