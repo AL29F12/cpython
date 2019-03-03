@@ -303,7 +303,11 @@ class saved_test_environment:
                     else:
                         print("NO IDEA", file=sys.stderr, flush=True)
 
+                    import time
                     try:
+                        stat = os.stat(thing)
+                        print(stat)
+                        print(time.ctime(stat.st_mtime))
                         with open(thing, 'r') as s:
                             print(s.read(), file=sys.stderr, flush=True)
                     except Exception as e:
