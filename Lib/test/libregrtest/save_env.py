@@ -306,12 +306,12 @@ class saved_test_environment:
                     try:
                         with open(thing, 'r') as s:
                             print(s.read(), file=sys.stderr, flush=True)
-                    except Exception:
-                            print("FAILED TO OPEN", file=sys.stderr, flush=True)
+                    except Exception as e:
+                        print("FAILED TO OPEN: {}".format(e), file=sys.stderr, flush=True)
                     try:
                         print(os.listdir(thing), file=sys.stderr, flush=True)
-                    except Exception:
-                        print("FAILED TO LISTDIR", file=sys.stderr, flush=True)
+                    except Exception as e:
+                        print("FAILED TO LISTDIE: {}".format(e), file=sys.stderr, flush=True)
                     print("*******************************************", file=sys.stderr, flush=True)
                 self.changed = True
                 restore(original)
