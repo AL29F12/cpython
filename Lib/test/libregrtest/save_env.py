@@ -14,7 +14,6 @@ try:
 except ImportError:
     multiprocessing = None
 
-
 # Unit tests are supposed to leave the execution environment unchanged
 # once they complete.  But sometimes tests have bugs, especially when
 # tests fail, and the changes to environment go on to mess up other
@@ -228,14 +227,18 @@ class saved_test_environment:
                       for fn in os.listdir())
     def restore_files(self, saved_value):
         fn = support.TESTFN
+        print("*******************************************", file=sys.stderr, flush=True)
         if fn not in saved_value and (fn + '/') not in saved_value:
             if os.path.isfile(fn):
+                print("Is a file", file=sys.stderr, flush=True)
                 with open(fn, 'r') as s:
                     print(s.read(), file=sys.stderr, flush=True)
                 support.unlink(fn)
             elif os.path.isdir(fn):
+                print("Is a directory", file=sys.stderr, flush=True)
                 print(os.listdir(fn), file=sys.stderr, flush=True)
                 support.rmtree(fn)
+        print("*******************************************", file=sys.stderr, flush=True)
 
     _lc = [getattr(locale, lc) for lc in dir(locale)
            if lc.startswith('LC_')]
