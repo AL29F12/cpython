@@ -9,6 +9,7 @@ import sysconfig
 import threading
 import warnings
 from test import support
+import subprocess
 try:
     import _multiprocessing, multiprocessing.process
 except ImportError:
@@ -307,8 +308,8 @@ class saved_test_environment:
                         stat = os.stat(thing)
                         print(stat)
                         print(time.ctime(stat.st_mtime))
-                        with open(thing, 'br') as s:
-                            print(s.read(), file=sys.stderr, flush=True)
+                        print(subprocess.check_output(['file', thing], stdout=subprocess.PIPE))
+                        print(subprocess.check_output(['file', os.getcwd() +'/'+ thing], stdout=subprocess.PIPE))
                     except Exception as e:
                         print("FAILED TO OPEN: {}".format(e), file=sys.stderr, flush=True)
                     try:
