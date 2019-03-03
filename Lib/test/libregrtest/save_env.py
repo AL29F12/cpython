@@ -230,6 +230,10 @@ class saved_test_environment:
     def restore_files(self, saved_value):
         fn = support.TESTFN
         print("*******************************************", file=sys.stderr, flush=True)
+        print("fn: {}".format(fn), file=sys.stderr, flush=True)
+        print("saved_value: {}".format(saved_value), file=sys.stderr, flush=True)
+        print("bool: {}".format(fn not in saved_value and (fn + '/') not in saved_value), file=sys.stderr, flush=True)
+
         if fn not in saved_value and (fn + '/') not in saved_value:
             if os.path.isfile(fn):
                 print("Is a file", file=sys.stderr, flush=True)
