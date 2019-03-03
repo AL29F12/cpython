@@ -308,7 +308,7 @@ class saved_test_environment:
                         stat = os.stat(thing)
                         print(stat)
                         print(time.ctime(stat.st_mtime))
-                        with open(thing, 'r') as s:
+                        with open(thing, 'br') as s:
                             print(s.read(), file=sys.stderr, flush=True)
                     except Exception as e:
                         print("FAILED TO OPEN: {}".format(e), file=sys.stderr, flush=True)
